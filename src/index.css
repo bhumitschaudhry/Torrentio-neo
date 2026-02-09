@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brutal-bg: #F2F2F2;
+  --color-brutal-black: #000000;
+  --color-brutal-white: #FFFFFF;
+  --color-acid-green: #39FF14;
+  --color-hot-magenta: #FF00FF;
+  --color-electric-blue: #00BFFF;
+  --color-acid-green-dark: #2BCC10;
+  --color-hot-magenta-dark: #CC00CC;
+  --color-electric-blue-dark: #0099CC;
+  --color-brutal-gray: #E0E0E0;
+  --color-brutal-dark-gray: #333333;
+  --color-brutal-yellow: #FFE600;
+  --color-brutal-red: #FF3333;
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: #F2F2F2;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #F2F2F2;
+  border-left: 4px solid #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border: 2px solid #F2F2F2;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF00FF;
+}
+
+/* Animations */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes slide-fill {
+  from { width: 0%; }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+.animate-slide-fill {
+  animation: slide-fill 1.5s ease-out;
+}
+
+.brutal-shadow {
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.brutal-shadow-sm {
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.brutal-shadow-magenta {
+  box-shadow: 6px 6px 0px #FF00FF;
+}
+
+.brutal-shadow-green {
+  box-shadow: 6px 6px 0px #39FF14;
+}
+
+.brutal-shadow-blue {
+  box-shadow: 6px 6px 0px #00BFFF;
+}
