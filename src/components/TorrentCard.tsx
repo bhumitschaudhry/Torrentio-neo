@@ -6,20 +6,24 @@ import {
   Pause,
   Play,
   Trash2,
-  MoreHorizontal,
+  PlayCircle,
   Upload,
   CheckCircle,
   Loader,
 } from 'lucide-react';
 import { ProgressBar } from './ProgressBar';
-import type { TorrentItem } from '../data/mockData';
+import type { TorrentItem } from '../types/torrent';
 
 interface TorrentCardProps {
   torrent: TorrentItem;
   index: number;
+  onPause: (id: string) => void;
+  onResume: (id: string) => void;
+  onRemove: (id: string) => void;
+  onStream: (id: string) => void;
 }
 
-export function TorrentCard({ torrent, index }: TorrentCardProps) {
+export function TorrentCard({ torrent, index, onPause, onResume, onRemove, onStream }: TorrentCardProps) {
   const getStatusBadge = () => {
     switch (torrent.status) {
       case 'downloading':
@@ -111,19 +115,32 @@ export function TorrentCard({ torrent, index }: TorrentCardProps) {
             {getStatusBadge()}
             <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
               {torrent.status === 'paused' ? (
-                <button className="w-[36px] h-[36px] bg-acid-green border-[3px] border-brutal-black flex items-center justify-center hover:bg-electric-blue transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]">
+                <button
+                  onClick={() => onResume(torrent.id)}
+                  className="w-[36px] h-[36px] bg-acid-green border-[3px] border-brutal-black flex items-center justify-center hover:bg-electric-blue transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
+                >
                   <Play className="w-4 h-4 text-brutal-black" strokeWidth={3} />
                 </button>
               ) : torrent.status === 'downloading' ? (
-                <button className="w-[36px] h-[36px] bg-brutal-yellow border-[3px] border-brutal-black flex items-center justify-center hover:bg-hot-magenta transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]">
+                <button
+                  onClick={() => onPause(torrent.id)}
+                  className="w-[36px] h-[36px] bg-brutal-yellow border-[3px] border-brutal-black flex items-center justify-center hover:bg-hot-magenta transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
+                >
                   <Pause className="w-4 h-4 text-brutal-black" strokeWidth={3} />
                 </button>
               ) : null}
-              <button className="w-[36px] h-[36px] bg-brutal-red border-[3px] border-brutal-black flex items-center justify-center hover:bg-hot-magenta transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]">
+              <button
+                onClick={() => onRemove(torrent.id)}
+                className="w-[36px] h-[36px] bg-brutal-red border-[3px] border-brutal-black flex items-center justify-center hover:bg-hot-magenta transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
+              >
                 <Trash2 className="w-4 h-4 text-brutal-black" strokeWidth={3} />
               </button>
-              <button className="w-[36px] h-[36px] bg-brutal-gray border-[3px] border-brutal-black flex items-center justify-center hover:bg-electric-blue transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]">
-                <MoreHorizontal className="w-4 h-4 text-brutal-black" strokeWidth={3} />
+              <button
+                onClick={() => onStream(torrent.id)}
+                className="w-[36px] h-[36px] bg-brutal-gray border-[3px] border-brutal-black flex items-center justify-center hover:bg-electric-blue transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
+                title="Open first streamable file"
+              >
+                <PlayCircle className="w-4 h-4 text-brutal-black" strokeWidth={3} />
               </button>
             </div>
           </div>

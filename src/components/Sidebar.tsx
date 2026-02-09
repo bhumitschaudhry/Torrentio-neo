@@ -13,14 +13,14 @@ import {
 interface SidebarProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
+  counts: {
+    downloads: number;
+    seeding: number;
+    completed: number;
+    all: number;
+  };
+  onAddTorrent: () => void;
 }
-
-const navItems = [
-  { id: 'downloads', label: 'DOWNLOADS', icon: Download, count: 3 },
-  { id: 'seeding', label: 'SEEDING', icon: Upload, count: 1 },
-  { id: 'completed', label: 'DONE', icon: Folder, count: 1 },
-  { id: 'all', label: 'ALL', icon: BarChart3, count: 7 },
-];
 
 const bottomItems = [
   { id: 'rss', label: 'RSS', icon: Rss },
@@ -28,7 +28,14 @@ const bottomItems = [
   { id: 'settings', label: 'CONFIG', icon: Settings },
 ];
 
-export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
+export function Sidebar({ activeTab, onTabChange, counts, onAddTorrent }: SidebarProps) {
+  const navItems = [
+    { id: 'downloads', label: 'DOWNLOADS', icon: Download, count: counts.downloads },
+    { id: 'seeding', label: 'SEEDING', icon: Upload, count: counts.seeding },
+    { id: 'completed', label: 'DONE', icon: Folder, count: counts.completed },
+    { id: 'all', label: 'ALL', icon: BarChart3, count: counts.all },
+  ];
+
   return (
     <aside className="w-[100px] min-h-screen bg-brutal-black flex flex-col items-center py-6 border-r-[6px] border-brutal-black relative z-20">
       {/* Logo */}
@@ -44,6 +51,7 @@ export function Sidebar({ activeTab, onTabChange }: SidebarProps) {
 
       {/* Add button */}
       <button
+        onClick={onAddTorrent}
         className="w-[68px] h-[68px] bg-acid-green border-[4px] border-brutal-white mb-6 flex items-center justify-center 
         hover:bg-hot-magenta transition-colors duration-150 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none brutal-shadow-sm cursor-pointer group"
       >

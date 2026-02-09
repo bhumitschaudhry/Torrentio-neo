@@ -1,13 +1,35 @@
 import { TorrentCard } from './TorrentCard';
-import type { TorrentItem } from '../data/mockData';
+import type { TorrentItem } from '../types/torrent';
 
 interface TorrentListProps {
   torrents: TorrentItem[];
   activeTab: string;
+  searchQuery: string;
+  onPause: (id: string) => void;
+  onResume: (id: string) => void;
+  onRemove: (id: string) => void;
+  onStream: (id: string) => void;
 }
 
-export function TorrentList({ torrents, activeTab }: TorrentListProps) {
+export function TorrentList({
+  torrents,
+  activeTab,
+  searchQuery,
+  onPause,
+  onResume,
+  onRemove,
+  onStream,
+}: TorrentListProps) {
+  const normalizedQuery = searchQuery.trim().toLowerCase();
   const filteredTorrents = torrents.filter((t) => {
+    const matchesQuery =
+      normalizedQuery.length === 0 ||
+      t.name.toLowerCase().includes(normalizedQuery) ||
+      t.category.toLowerCase().includes(normalizedQuery);
+    if (!matchesQuery) {
+      return false;
+    }
+
     switch (activeTab) {
       case 'downloads':
         return t.status === 'downloading' || t.status === 'paused' || t.status === 'queued';
@@ -54,7 +76,15 @@ export function TorrentList({ torrents, activeTab }: TorrentListProps) {
       <div className="space-y-1">
         {filteredTorrents.length > 0 ? (
           filteredTorrents.map((torrent, index) => (
-            <TorrentCard key={torrent.id} torrent={torrent} index={index} />
+            <TorrentCard
+              key={torrent.id}
+              torrent={torrent}
+              index={index}
+              onPause={onPause}
+              onResume={onResume}
+              onRemove={onRemove}
+              onStream={onStream}
+            />
           ))
         ) : (
           <div className="bg-brutal-white border-[5px] border-brutal-black brutal-shadow p-12 text-center">

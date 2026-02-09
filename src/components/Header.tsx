@@ -1,6 +1,12 @@
 import { Zap, Search, Bell, Wifi } from 'lucide-react';
 
-export function Header() {
+interface HeaderProps {
+  searchQuery: string;
+  onSearchChange: (value: string) => void;
+  isConnected: boolean;
+}
+
+export function Header({ searchQuery, onSearchChange, isConnected }: HeaderProps) {
   return (
     <header className="relative mb-2">
       {/* Main header bar */}
@@ -28,14 +34,25 @@ export function Header() {
             <input
               type="text"
               placeholder="SEARCH TORRENTS..."
+              value={searchQuery}
+              onChange={(event) => onSearchChange(event.target.value)}
               className="px-3 py-2 font-display text-[12px] tracking-wider bg-transparent outline-none w-[200px] placeholder:text-brutal-gray"
             />
           </div>
 
           {/* Connection Status */}
-          <div className="bg-acid-green border-[4px] border-brutal-black brutal-shadow-sm px-3 py-2 flex items-center gap-2 cursor-pointer hover:bg-hot-magenta transition-colors">
-            <Wifi className="w-5 h-5 text-brutal-black animate-pulse-green" strokeWidth={3} />
-            <span className="font-display text-[10px] text-brutal-black tracking-wider">CONNECTED</span>
+          <div
+            className={`border-[4px] border-brutal-black brutal-shadow-sm px-3 py-2 flex items-center gap-2 cursor-default transition-colors ${
+              isConnected ? 'bg-acid-green' : 'bg-brutal-red'
+            }`}
+          >
+            <Wifi
+              className={`w-5 h-5 text-brutal-black ${isConnected ? 'animate-pulse-green' : ''}`}
+              strokeWidth={3}
+            />
+            <span className="font-display text-[10px] text-brutal-black tracking-wider">
+              {isConnected ? 'CONNECTED' : 'OFFLINE'}
+            </span>
           </div>
 
           {/* Notifications */}
