@@ -5,20 +5,10 @@ interface ProgressBarProps {
 
 export function ProgressBar({ progress, status }: ProgressBarProps) {
   const getColor = () => {
-    switch (status) {
-      case 'downloading':
-        return 'bg-acid-green';
-      case 'seeding':
-        return 'bg-hot-magenta';
-      case 'completed':
-        return 'bg-electric-blue';
-      case 'paused':
-        return 'bg-brutal-yellow';
-      case 'queued':
-        return 'bg-brutal-gray';
-      default:
-        return 'bg-acid-green';
+    if (status === 'queued') {
+      return 'bg-brutal-black';
     }
+    return 'bg-acid-green';
   };
 
   // Retro battery indicator segments

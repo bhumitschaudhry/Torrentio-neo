@@ -40,7 +40,7 @@ export function Sidebar({ activeTab, onTabChange, counts, onAddTorrent }: Sideba
     <aside className="w-[100px] min-h-screen bg-brutal-black flex flex-col items-center py-6 border-r-[6px] border-brutal-black relative z-20">
       {/* Logo */}
       <div className="mb-8 flex flex-col items-center">
-        <div className="w-[72px] h-[72px] bg-hot-magenta border-[4px] border-brutal-black brutal-shadow-sm flex items-center justify-center relative">
+        <div className="w-[72px] h-[72px] bg-brutal-white border-[4px] border-brutal-black brutal-shadow-sm flex items-center justify-center relative">
           <Zap className="w-10 h-10 text-brutal-black" strokeWidth={3} />
           <div className="absolute -top-2 -right-2 w-5 h-5 bg-acid-green border-[2px] border-brutal-black" />
         </div>
@@ -52,8 +52,8 @@ export function Sidebar({ activeTab, onTabChange, counts, onAddTorrent }: Sideba
       {/* Add button */}
       <button
         onClick={onAddTorrent}
-        className="w-[68px] h-[68px] bg-acid-green border-[4px] border-brutal-white mb-6 flex items-center justify-center 
-        hover:bg-hot-magenta transition-colors duration-150 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none brutal-shadow-sm cursor-pointer group"
+        className="w-[68px] h-[68px] bg-brutal-white border-[4px] border-brutal-white mb-6 flex items-center justify-center 
+        hover:bg-acid-green transition-colors duration-150 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none brutal-shadow-sm cursor-pointer group"
       >
         <Plus className="w-9 h-9 text-brutal-black group-hover:rotate-90 transition-transform duration-200" strokeWidth={3.5} />
       </button>
@@ -71,8 +71,8 @@ export function Sidebar({ activeTab, onTabChange, counts, onAddTorrent }: Sideba
                 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none
                 ${
                   isActive
-                    ? 'bg-hot-magenta border-brutal-white brutal-shadow-sm text-brutal-black'
-                    : 'bg-brutal-dark-gray border-brutal-dark-gray text-brutal-gray hover:bg-hot-magenta hover:border-brutal-white hover:text-brutal-black brutal-shadow-sm'
+                    ? 'bg-acid-green border-brutal-white brutal-shadow-sm text-brutal-black'
+                    : 'bg-brutal-dark-gray border-brutal-dark-gray text-brutal-gray hover:bg-acid-green hover:border-brutal-white hover:text-brutal-black brutal-shadow-sm'
                 }`}
             >
               <Icon className="w-6 h-6" strokeWidth={2.5} />
@@ -100,8 +100,8 @@ export function Sidebar({ activeTab, onTabChange, counts, onAddTorrent }: Sideba
                 active:translate-x-[2px] active:translate-y-[2px]
                 ${
                   isActive
-                    ? 'bg-electric-blue border-brutal-white text-brutal-black'
-                    : 'bg-brutal-dark-gray border-brutal-dark-gray text-brutal-gray hover:bg-electric-blue hover:border-brutal-white hover:text-brutal-black'
+                    ? 'bg-acid-green border-brutal-white text-brutal-black'
+                    : 'bg-brutal-dark-gray border-brutal-dark-gray text-brutal-gray hover:bg-acid-green hover:border-brutal-white hover:text-brutal-black'
                 }`}
             >
               <Icon className="w-5 h-5" strokeWidth={2.5} />

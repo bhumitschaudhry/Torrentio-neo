@@ -117,27 +117,27 @@ export function TorrentCard({ torrent, index, onPause, onResume, onRemove, onStr
               {torrent.status === 'paused' ? (
                 <button
                   onClick={() => onResume(torrent.id)}
-                  className="w-[36px] h-[36px] bg-acid-green border-[3px] border-brutal-black flex items-center justify-center hover:bg-electric-blue transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
+                  className="w-[36px] h-[36px] bg-brutal-white border-[3px] border-brutal-black flex items-center justify-center hover:bg-acid-green transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
                 >
                   <Play className="w-4 h-4 text-brutal-black" strokeWidth={3} />
                 </button>
               ) : torrent.status === 'downloading' ? (
                 <button
                   onClick={() => onPause(torrent.id)}
-                  className="w-[36px] h-[36px] bg-brutal-yellow border-[3px] border-brutal-black flex items-center justify-center hover:bg-hot-magenta transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
+                  className="w-[36px] h-[36px] bg-brutal-white border-[3px] border-brutal-black flex items-center justify-center hover:bg-acid-green transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
                 >
                   <Pause className="w-4 h-4 text-brutal-black" strokeWidth={3} />
                 </button>
               ) : null}
               <button
                 onClick={() => onRemove(torrent.id)}
-                className="w-[36px] h-[36px] bg-brutal-red border-[3px] border-brutal-black flex items-center justify-center hover:bg-hot-magenta transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
+                className="w-[36px] h-[36px] bg-brutal-white border-[3px] border-brutal-black flex items-center justify-center hover:bg-acid-green transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
               >
                 <Trash2 className="w-4 h-4 text-brutal-black" strokeWidth={3} />
               </button>
               <button
                 onClick={() => onStream(torrent.id)}
-                className="w-[36px] h-[36px] bg-brutal-gray border-[3px] border-brutal-black flex items-center justify-center hover:bg-electric-blue transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
+                className="w-[36px] h-[36px] bg-brutal-white border-[3px] border-brutal-black flex items-center justify-center hover:bg-acid-green transition-colors cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
                 title="Open first streamable file"
               >
                 <PlayCircle className="w-4 h-4 text-brutal-black" strokeWidth={3} />
