@@ -8,6 +8,7 @@
     "dev:frontend": "vite",
     "dev:backend": "node server/index.js",
     "start:backend": "node server/index.js",
+    "test:smoke": "node scripts/smoke-backend.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "tauri": "tauri",

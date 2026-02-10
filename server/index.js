@@ -264,7 +264,49 @@ function emitSnapshot() {
 }
 
 function findTorrentById(id) {
-  return client.get(id) ?? client.torrents.find((torrent) => torrent.infoHash === id);
+  const normalizedId = String(id ?? '').trim();
+  const normalizedInfoHash = normalizedId.toLowerCase();
+
+  return client.torrents.find((torrent) => {
+    const metadata = getOrCreateMetadata(torrent);
+    const torrentInfoHash = typeof torrent.infoHash === 'string' ? torrent.infoHash.toLowerCase() : '';
+
+    if (torrentInfoHash && torrentInfoHash === normalizedInfoHash) {
+      return true;
+    }
+
+    return metadata.source === normalizedId;
+  }) ?? null;
+}
+
+function extractInfoHashFromMagnet(source) {
+  const match = source.match(/[?&]xt=urn:btih:([^&]+)/i);
+  if (!match) {
+    return null;
+  }
+
+  const candidate = decodeURIComponent(match[1]).trim();
+  if (!/^[a-f0-9]{40}$/i.test(candidate)) {
+    return null;
+  }
+
+  return candidate.toLowerCase();
+}
+
+function findExistingTorrentBySource(source) {
+  const normalizedSource = source.trim();
+  const sourceInfoHash = extractInfoHashFromMagnet(normalizedSource);
+
+  return client.torrents.find((torrent) => {
+    const metadata = getOrCreateMetadata(torrent);
+    const torrentInfoHash = typeof torrent.infoHash === 'string' ? torrent.infoHash.toLowerCase() : null;
+
+    if (sourceInfoHash && torrentInfoHash && sourceInfoHash === torrentInfoHash) {
+      return true;
+    }
+
+    return metadata.source === normalizedSource;
+  }) ?? null;
 }
 
 function bindTorrentEvents(torrent) {
@@ -308,7 +350,7 @@ app.post('/api/torrents', (request, response) => {
     return;
   }
 
-  if (client.get(source)) {
+  if (findExistingTorrentBySource(source)) {
     response.json(buildSnapshot());
     return;
   }
@@ -415,8 +457,9 @@ app.get('/api/torrents/:id/files', (request, response) => {
     return;
   }
 
+  const files = Array.isArray(torrent.files) ? torrent.files : [];
   response.json({
-    files: torrent.files.map((file, index) => ({
+    files: files.map((file, index) => ({
       index,
       name: file.name,
       size: formatBytes(file.length),
@@ -433,8 +476,14 @@ app.get('/api/torrents/:id/files/:index/stream', (request, response) => {
     return;
   }
 
+  const files = Array.isArray(torrent.files) ? torrent.files : [];
+  if (files.length === 0) {
+    response.status(409).json({ error: 'Torrent metadata is not available yet.' });
+    return;
+  }
+
   const index = Number.parseInt(request.params.index, 10);
-  const file = Number.isInteger(index) ? torrent.files[index] : undefined;
+  const file = Number.isInteger(index) ? files[index] : undefined;
   if (!file) {
     response.status(404).json({ error: 'File not found for this torrent.' });
     return;
