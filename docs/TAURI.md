@@ -19,6 +19,7 @@ The app currently keeps the Node backend architecture:
 - Frontend runs inside Tauri webview.
 - Backend remains `server/index.js`.
 - Release startup attempts to spawn backend from Rust `setup`.
+- Backend process is launched without opening a visible console window on Windows.
 
 ## Release Backend Startup Logic
 Implemented in `src-tauri/src/main.rs`.
@@ -33,6 +34,10 @@ Implemented in `src-tauri/src/main.rs`.
 1. `node` from PATH
 2. `%ProgramFiles%\\nodejs\\node.exe`
 3. `%ProgramFiles(x86)%\\nodejs\\node.exe`
+
+### Window behavior
+- Node backend child process is spawned with hidden-window flags on Windows.
+- Standard IO is detached (`stdin/stdout/stderr` set to null) to avoid console flicker.
 
 ## Diagnostics
 Startup attempts are logged to:
@@ -57,6 +62,12 @@ Current release requires Node on target system. If Node is unavailable, backend 
 - Package Node runtime as sidecar with installer.
 - Replace Node backend with Rust-native commands/services.
 - Add UI-level backend bootstrap status and retry flow.
+
+## Recent Desktop Changes
+- Tauri scaffold and installer generation enabled.
+- Backend startup path and Node fallback logic added.
+- Startup diagnostic logging added.
+- CMD popup on app startup fixed.
 
 ## Validation Commands
 ```bash

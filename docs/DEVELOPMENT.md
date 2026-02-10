@@ -50,6 +50,7 @@ npm run tauri:dev
 ## Project Conventions
 - Keep API responses backward-compatible with `src/types/torrent.ts`.
 - Preserve existing `/api` endpoint routes when adding new UI features.
+- Keep visual system in black/white + one accent unless a change is explicitly requested.
 - Keep changes split by scope when committing:
   - `feat(tauri): ...`
   - `feat(backend): ...`

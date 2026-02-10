@@ -19,8 +19,9 @@ It provides live torrent status, upload/magnet ingestion, pause/resume/remove co
 9. [Tauri Packaging](#tauri-packaging)
 10. [Troubleshooting](#troubleshooting)
 11. [Known Limitations](#known-limitations)
-12. [Version Snapshot](#version-snapshot)
-13. [Additional Docs](#additional-docs)
+12. [Recent Changes](#recent-changes)
+13. [Version Snapshot](#version-snapshot)
+14. [Additional Docs](#additional-docs)
 
 ## Core Features
 - Add torrents via magnet URI / torrent URL.
@@ -173,6 +174,14 @@ Detailed desktop/runtime notes live in `docs/TAURI.md`.
 - Streaming endpoint uses generic `application/octet-stream` content type.
 - Full installer-runtime QA on a clean machine profile should still be part of release validation.
 
+## Recent Changes
+- Tauri desktop integration completed and validated (`tauri:dev`, `tauri:build`).
+- Backend startup hardening for packaged runtime with diagnostics logging.
+- Windows CMD popup removed on desktop launch (backend now spawns hidden).
+- UI theme toned down to black/white + single accent for reduced eye strain.
+
+See full history in `CHANGELOG.md`.
+
 ## Version Snapshot
 Validated locally on 2026-02-10:
 - OS: Windows 10.0.26200 x64
@@ -185,6 +194,7 @@ Validated locally on 2026-02-10:
 - tauri (Rust crate): 2.10.2
 
 ## Additional Docs
+- `CHANGELOG.md`
 - `docs/API.md`
 - `docs/DEVELOPMENT.md`
 - `docs/TAURI.md`
