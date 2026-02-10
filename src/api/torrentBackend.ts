@@ -1,6 +1,29 @@
 import type { BackendSnapshot, TorrentFilesResponse } from '../types/torrent';
 
-const API_BASE = '/api';
+const DEFAULT_BACKEND_ORIGIN = 'http://127.0.0.1:3001';
+
+function resolveApiBase() {
+  const explicitApiBase = import.meta.env.VITE_TORRENTIO_API_BASE?.trim();
+  if (explicitApiBase) {
+    return explicitApiBase.replace(/\/+$/, '');
+  }
+
+  if (typeof window === 'undefined') {
+    return '/api';
+  }
+
+  const { protocol, port } = window.location;
+  const isViteDevServer = (protocol === 'http:' || protocol === 'https:') && port === '5173';
+
+  if (isViteDevServer) {
+    return '/api';
+  }
+
+  // In packaged Tauri builds there is no Vite proxy, so route directly to the Node backend.
+  return `${DEFAULT_BACKEND_ORIGIN}/api`;
+}
+
+const API_BASE = resolveApiBase();
 
 class BackendRequestError extends Error {
   status: number;
@@ -17,6 +40,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, {
     ...init,
     headers: {
+      Accept: 'application/json',
       ...(isFormData ? {} : { 'Content-Type': 'application/json' }),
       ...(init?.headers ?? {}),
     },
@@ -29,6 +53,13 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
         ? String(payload.error)
         : `${response.status} ${response.statusText}`;
     throw new BackendRequestError(response.status, message);
+  }
+
+  if (!payload || typeof payload !== 'object') {
+    throw new BackendRequestError(
+      response.status,
+      'Invalid backend response. Ensure the desktop app can reach http://127.0.0.1:3001.',
+    );
   }
 
   return payload as T;
