@@ -140,15 +140,15 @@ export function App() {
           />
 
           {error ? (
-            <div className="mt-4 bg-brutal-red border-[4px] border-brutal-black p-3">
-              <p className="font-display text-[12px] text-brutal-black tracking-wider">
+            <div className="mt-4 bg-brutal-black border-[4px] border-brutal-black p-3">
+              <p className="font-display text-[12px] text-brutal-white tracking-wider">
                 BACKEND ERROR: {error}
               </p>
             </div>
           ) : null}
 
           {isLoading ? (
-            <div className="mt-4 bg-brutal-yellow border-[4px] border-brutal-black p-3">
+            <div className="mt-4 bg-brutal-white border-[4px] border-brutal-black p-3">
               <p className="font-display text-[12px] text-brutal-black tracking-wider">
                 CONNECTING TO TORRENT BACKEND...
               </p>
@@ -176,7 +176,7 @@ export function App() {
 
         {/* Decorative corner elements */}
         <div className="fixed top-4 right-4 z-50">
-          <div className="w-[30px] h-[30px] border-[4px] border-brutal-black bg-hot-magenta rotate-45 opacity-40" />
+          <div className="w-[30px] h-[30px] border-[4px] border-brutal-black bg-acid-green rotate-45 opacity-25" />
         </div>
       </main>
 

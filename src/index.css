@@ -1,19 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brutal-bg: #F2F2F2;
+  --color-brutal-bg: #FFFFFF;
   --color-brutal-black: #000000;
   --color-brutal-white: #FFFFFF;
-  --color-acid-green: #39FF14;
-  --color-hot-magenta: #FF00FF;
-  --color-electric-blue: #00BFFF;
-  --color-acid-green-dark: #2BCC10;
-  --color-hot-magenta-dark: #CC00CC;
-  --color-electric-blue-dark: #0099CC;
-  --color-brutal-gray: #E0E0E0;
-  --color-brutal-dark-gray: #333333;
-  --color-brutal-yellow: #FFE600;
-  --color-brutal-red: #FF3333;
+  --color-accent: #3B82F6;
+  --color-accent-dark: #2563EB;
+  --color-acid-green: var(--color-accent);
+  --color-hot-magenta: var(--color-accent);
+  --color-electric-blue: var(--color-accent);
+  --color-acid-green-dark: var(--color-accent-dark);
+  --color-hot-magenta-dark: var(--color-accent-dark);
+  --color-electric-blue-dark: var(--color-accent-dark);
+  --color-brutal-gray: #FFFFFF;
+  --color-brutal-dark-gray: #000000;
+  --color-brutal-yellow: var(--color-accent);
+  --color-brutal-red: var(--color-accent);
   --font-display: 'Archivo Black', sans-serif;
   --font-body: 'Space Grotesk', sans-serif;
 }
@@ -24,7 +26,7 @@
 
 body {
   font-family: 'Space Grotesk', sans-serif;
-  background: #F2F2F2;
+  background: #FFFFFF;
   overflow-x: hidden;
 }
 
@@ -33,15 +35,15 @@ body {
   width: 12px;
 }
 ::-webkit-scrollbar-track {
-  background: #F2F2F2;
+  background: #FFFFFF;
   border-left: 4px solid #000;
 }
 ::-webkit-scrollbar-thumb {
   background: #000;
-  border: 2px solid #F2F2F2;
+  border: 2px solid #FFFFFF;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF00FF;
+  background: #3B82F6;
 }
 
 /* Animations */
@@ -80,13 +82,13 @@ body {
 }
 
 .brutal-shadow-magenta {
-  box-shadow: 6px 6px 0px #FF00FF;
+  box-shadow: 6px 6px 0px #3B82F6;
 }
 
 .brutal-shadow-green {
-  box-shadow: 6px 6px 0px #39FF14;
+  box-shadow: 6px 6px 0px #3B82F6;
 }
 
 .brutal-shadow-blue {
-  box-shadow: 6px 6px 0px #00BFFF;
+  box-shadow: 6px 6px 0px #3B82F6;
 }
