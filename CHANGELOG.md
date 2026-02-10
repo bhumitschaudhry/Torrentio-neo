@@ -16,6 +16,16 @@ All notable changes to this project are documented in this file.
   - Vite dev mode uses relative `/api` (proxy).
   - Packaged desktop mode uses `http://127.0.0.1:3001/api`.
 - Added backend response-shape guard in frontend API client to avoid null payload crashes.
+- Fixed torrent add endpoint duplicate detection logic:
+  - Replaced unreliable `client.get(source)` short-circuit with active-torrent/source-based matching.
+- Fixed torrent lookup by route id:
+  - Replaced `client.get(id)` in lookup path to avoid phantom objects.
+- Fixed files endpoint behavior before metadata:
+  - `/api/torrents/:id/files` now returns an empty list instead of crashing.
+  - `/api/torrents/:id/files/:index/stream` now returns `409` when metadata is not available yet.
+
+### Added
+- Added backend smoke test runner: `npm run test:smoke`.
 
 ## 2026-02-10
 

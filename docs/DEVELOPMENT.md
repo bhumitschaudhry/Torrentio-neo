@@ -9,6 +9,7 @@
 - `npm run dev` start frontend and backend concurrently
 - `npm run dev:frontend` run Vite only
 - `npm run dev:backend` run backend only
+- `npm run test:smoke` run backend smoke test suite
 - `npm run build` build frontend assets
 - `npm run preview` preview frontend build
 - `npm run tauri:dev` run desktop dev shell
@@ -32,6 +33,11 @@ npm run dev
 4. Run desktop dev:
 ```bash
 npm run tauri:dev
+```
+
+5. Run smoke validation:
+```bash
+npm run test:smoke
 ```
 
 ## Backend Notes

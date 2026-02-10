@@ -14,14 +14,15 @@ It provides live torrent status, upload/magnet ingestion, pause/resume/remove co
 4. [Prerequisites](#prerequisites)
 5. [Quick Start](#quick-start)
 6. [Run Modes](#run-modes)
-7. [Configuration](#configuration)
-8. [API Overview](#api-overview)
-9. [Tauri Packaging](#tauri-packaging)
-10. [Troubleshooting](#troubleshooting)
-11. [Known Limitations](#known-limitations)
-12. [Recent Changes](#recent-changes)
-13. [Version Snapshot](#version-snapshot)
-14. [Additional Docs](#additional-docs)
+7. [Validation](#validation)
+8. [Configuration](#configuration)
+9. [API Overview](#api-overview)
+10. [Tauri Packaging](#tauri-packaging)
+11. [Troubleshooting](#troubleshooting)
+12. [Known Limitations](#known-limitations)
+13. [Recent Changes](#recent-changes)
+14. [Version Snapshot](#version-snapshot)
+15. [Additional Docs](#additional-docs)
 
 ## Core Features
 - Add torrents via magnet URI / torrent URL.
@@ -99,6 +100,11 @@ npm run build
 npm run preview
 ```
 
+### Backend smoke validation
+```bash
+npm run test:smoke
+```
+
 ### Tauri desktop dev
 ```bash
 npm run tauri:dev
@@ -116,6 +122,14 @@ Installer outputs:
 Direct download links:
 - [Windows Installer (MSI)](./releases/Torrentio%20Neo_0.1.1_x64_en-US.msi)
 - [Windows Setup (EXE)](./releases/Torrentio%20Neo_0.1.1_x64-setup.exe)
+
+## Validation
+- `npm run test:smoke` validates backend API health and core torrent operations:
+  - add
+  - pause/resume
+  - files listing
+  - stream pre-metadata handling
+  - delete
 
 ## Configuration
 Backend environment variables (`server/index.js`):
