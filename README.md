@@ -116,12 +116,12 @@ npm run tauri:build
 ```
 
 Installer outputs:
-- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.1_x64_en-US.msi`
-- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.1_x64-setup.exe`
+- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.2_x64_en-US.msi`
+- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.2_x64-setup.exe`
 
 Direct download links:
-- [Windows Installer (MSI)](./releases/Torrentio%20Neo_0.1.1_x64_en-US.msi)
-- [Windows Setup (EXE)](./releases/Torrentio%20Neo_0.1.1_x64-setup.exe)
+- [Windows Installer (MSI)](./releases/Torrentio%20Neo_0.1.2_x64_en-US.msi)
+- [Windows Setup (EXE)](./releases/Torrentio%20Neo_0.1.2_x64-setup.exe)
 
 ## Validation
 - `npm run test:smoke` validates backend API health and core torrent operations:
@@ -194,6 +194,7 @@ Detailed desktop/runtime notes live in `docs/TAURI.md`.
 - Full installer-runtime QA on a clean machine profile should still be part of release validation.
 
 ## Recent Changes
+- Released `v0.1.2` with refreshed Windows installers and synchronized version metadata.
 - Tauri desktop integration completed and validated (`tauri:dev`, `tauri:build`).
 - Backend startup hardening for packaged runtime with diagnostics logging.
 - Windows CMD popup removed on desktop launch (backend now spawns hidden).
@@ -204,7 +205,7 @@ See full history in `CHANGELOG.md`.
 
 ## Version Snapshot
 Validated locally on 2026-02-10:
-- App version: `0.1.1`
+- App version: `0.1.2`
 - OS: Windows 10.0.26200 x64
 - node: 24.13.0
 - npm: 11.8.0
