@@ -7,9 +7,12 @@ use std::{
     fs::OpenOptions,
     io::Write,
     path::PathBuf,
-    process::Command,
+    process::{Command, Stdio},
     time::SystemTime,
 };
+
+#[cfg(all(not(debug_assertions), windows))]
+use std::os::windows::process::CommandExt;
 
 #[cfg(not(debug_assertions))]
 use tauri::Manager;
@@ -66,6 +69,25 @@ fn node_command_candidates() -> Vec<PathBuf> {
 }
 
 #[cfg(not(debug_assertions))]
+fn spawn_backend_process(node_candidate: &PathBuf, script_path: &PathBuf) -> std::io::Result<std::process::Child> {
+    let mut command = Command::new(node_candidate);
+    command
+        .arg(script_path)
+        .stdin(Stdio::null())
+        .stdout(Stdio::null())
+        .stderr(Stdio::null());
+
+    #[cfg(windows)]
+    {
+        // Prevent a visible console window when launching the bundled Node backend.
+        const CREATE_NO_WINDOW: u32 = 0x08000000;
+        command.creation_flags(CREATE_NO_WINDOW);
+    }
+
+    command.spawn()
+}
+
+#[cfg(not(debug_assertions))]
 fn start_backend_server(app: &tauri::App) {
     let script_path = backend_script_candidates(app)
         .into_iter()
@@ -82,7 +104,7 @@ fn start_backend_server(app: &tauri::App) {
     ));
 
     for node_candidate in node_command_candidates() {
-        match Command::new(&node_candidate).arg(&script_path).spawn() {
+        match spawn_backend_process(&node_candidate, &script_path) {
             Ok(child) => {
                 startup_log_line(&format!(
                     "backend started via '{}' with pid {}",
