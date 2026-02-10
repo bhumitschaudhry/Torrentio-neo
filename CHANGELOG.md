@@ -2,6 +2,23 @@
 
 All notable changes to this project are documented in this file.
 
+## 2026-02-10 (v0.1.2)
+
+### Changed
+- Bumped release versions across project metadata:
+  - `package.json` / `package-lock.json` -> `0.1.2`
+  - `src-tauri/tauri.conf.json` -> `0.1.2`
+  - `src-tauri/Cargo.toml` -> `0.1.2`
+- Updated documentation installer references and download links to `0.1.2`.
+
+### Built Artifacts
+- `Torrentio Neo_0.1.2_x64_en-US.msi`
+- `Torrentio Neo_0.1.2_x64-setup.exe`
+
+### Validation
+- `npm run tauri:build` passed for `0.1.2`.
+- `npm run test:smoke` passed.
+
 ## 2026-02-10 (v0.1.1)
 
 ### Changed

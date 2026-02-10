@@ -16,8 +16,8 @@ Finish runtime QA and release hardening after successful Tauri integration/build
   - `/api/health` returns `{"ok":true}`
   - `http://localhost:5173` returns `200`
 - `tauri:build` validated and installers generated:
-  - `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.1_x64_en-US.msi`
-  - `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.1_x64-setup.exe`
+  - `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.2_x64_en-US.msi`
+  - `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.2_x64-setup.exe`
 - Built release executable startup validated locally:
   - `src-tauri/target/release/torrentio-neo.exe` starts backend and `/api/health` returns `{"ok":true}`.
 - Rust checks validated:

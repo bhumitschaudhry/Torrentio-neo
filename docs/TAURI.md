@@ -50,10 +50,12 @@ Log includes:
 - successful child process PID
 
 ## Build Outputs
+Current documented release version: `0.1.2`.
+
 After `npm run tauri:build`:
 - `src-tauri/target/release/torrentio-neo.exe`
-- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.1_x64_en-US.msi`
-- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.1_x64-setup.exe`
+- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.2_x64_en-US.msi`
+- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.2_x64-setup.exe`
 
 ## Operational Constraint
 Current release requires Node on target system. If Node is unavailable, backend startup fails and API calls will not work.

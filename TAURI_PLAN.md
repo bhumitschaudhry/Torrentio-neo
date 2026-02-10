@@ -17,8 +17,8 @@ Implemented and validated:
 - Built release executable starts and serves backend health in local environment (`/api/health` returns `{"ok":true}`).
 
 Build artifacts produced:
-- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.1_x64_en-US.msi`
-- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.1_x64-setup.exe`
+- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.2_x64_en-US.msi`
+- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.2_x64-setup.exe`
 
 ## Technical Decisions (Current)
 1. Keep existing backend architecture for now.
