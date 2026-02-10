@@ -52,8 +52,8 @@ Log includes:
 ## Build Outputs
 After `npm run tauri:build`:
 - `src-tauri/target/release/torrentio-neo.exe`
-- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.0_x64_en-US.msi`
-- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.0_x64-setup.exe`
+- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.1_x64_en-US.msi`
+- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.1_x64-setup.exe`
 
 ## Operational Constraint
 Current release requires Node on target system. If Node is unavailable, backend startup fails and API calls will not work.
@@ -68,6 +68,7 @@ Current release requires Node on target system. If Node is unavailable, backend 
 - Backend startup path and Node fallback logic added.
 - Startup diagnostic logging added.
 - CMD popup on app startup fixed.
+- Packaged blank-screen issue fixed by using direct backend API base outside Vite dev mode.
 
 ## Validation Commands
 ```bash

@@ -2,6 +2,21 @@
 
 All notable changes to this project are documented in this file.
 
+## 2026-02-10 (v0.1.1)
+
+### Changed
+- Bumped release versions across project metadata:
+  - `package.json` / `package-lock.json` -> `0.1.1`
+  - `src-tauri/tauri.conf.json` -> `0.1.1`
+  - `src-tauri/Cargo.toml` -> `0.1.1`
+- Updated documentation references and installer links to `0.1.1`.
+
+### Fixed
+- Fixed packaged desktop blank-screen issue by resolving API base dynamically:
+  - Vite dev mode uses relative `/api` (proxy).
+  - Packaged desktop mode uses `http://127.0.0.1:3001/api`.
+- Added backend response-shape guard in frontend API client to avoid null payload crashes.
+
 ## 2026-02-10
 
 ### Added

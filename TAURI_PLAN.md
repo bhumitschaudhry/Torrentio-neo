@@ -17,8 +17,8 @@ Implemented and validated:
 - Built release executable starts and serves backend health in local environment (`/api/health` returns `{"ok":true}`).
 
 Build artifacts produced:
-- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.0_x64_en-US.msi`
-- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.0_x64-setup.exe`
+- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.1_x64_en-US.msi`
+- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.1_x64-setup.exe`
 
 ## Technical Decisions (Current)
 1. Keep existing backend architecture for now.
@@ -41,6 +41,11 @@ Build artifacts produced:
   - `exe_dir/server/index.js`
   - `cwd/server/index.js`
 - Startup attempts are logged to `%TEMP%\torrentio-neo-startup.log`.
+
+5. Fix packaged frontend API routing.
+- In Vite dev mode, frontend uses relative `/api`.
+- In packaged mode, frontend uses `http://127.0.0.1:3001/api` directly.
+- Added backend response-shape guard to avoid blank-screen crashes on invalid payloads.
 
 ## Open Risks
 1. Installed package behavior on clean machine still needs full test.

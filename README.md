@@ -48,6 +48,7 @@ src/                  React frontend
 server/               Express + WebTorrent backend
 src-tauri/            Tauri Rust app and packaging config
 downloads/            Torrent payload output directory (default)
+releases/             Published Windows installers
 README.md             Project overview and operations guide
 docs/API.md           Endpoint reference
 docs/DEVELOPMENT.md   Developer workflow and conventions
@@ -109,8 +110,12 @@ npm run tauri:build
 ```
 
 Installer outputs:
-- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.0_x64_en-US.msi`
-- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.0_x64-setup.exe`
+- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.1_x64_en-US.msi`
+- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.1_x64-setup.exe`
+
+Direct download links:
+- [Windows Installer (MSI)](./releases/Torrentio%20Neo_0.1.1_x64_en-US.msi)
+- [Windows Setup (EXE)](./releases/Torrentio%20Neo_0.1.1_x64-setup.exe)
 
 ## Configuration
 Backend environment variables (`server/index.js`):
@@ -178,12 +183,14 @@ Detailed desktop/runtime notes live in `docs/TAURI.md`.
 - Tauri desktop integration completed and validated (`tauri:dev`, `tauri:build`).
 - Backend startup hardening for packaged runtime with diagnostics logging.
 - Windows CMD popup removed on desktop launch (backend now spawns hidden).
+- Fixed packaged desktop blank-screen issue by routing API calls directly to `http://127.0.0.1:3001` outside Vite dev mode.
 - UI theme toned down to black/white + single accent for reduced eye strain.
 
 See full history in `CHANGELOG.md`.
 
 ## Version Snapshot
 Validated locally on 2026-02-10:
+- App version: `0.1.1`
 - OS: Windows 10.0.26200 x64
 - node: 24.13.0
 - npm: 11.8.0

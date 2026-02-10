@@ -16,8 +16,8 @@ Finish runtime QA and release hardening after successful Tauri integration/build
   - `/api/health` returns `{"ok":true}`
   - `http://localhost:5173` returns `200`
 - `tauri:build` validated and installers generated:
-  - `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.0_x64_en-US.msi`
-  - `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.0_x64-setup.exe`
+  - `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.1_x64_en-US.msi`
+  - `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.1_x64-setup.exe`
 - Built release executable startup validated locally:
   - `src-tauri/target/release/torrentio-neo.exe` starts backend and `/api/health` returns `{"ok":true}`.
 - Rust checks validated:
@@ -34,6 +34,9 @@ Finish runtime QA and release hardening after successful Tauri integration/build
 - Frontend calls relative `/api` endpoints.
 - In dev, backend runs via existing `npm run dev` flow.
 - In packaged build, `src-tauri/src/main.rs` starts backend in release mode and logs startup attempts to `%TEMP%\\torrentio-neo-startup.log`.
+- Frontend API base resolution:
+  - Vite dev mode uses `/api` proxy.
+  - Packaged desktop mode calls `http://127.0.0.1:3001/api` directly to avoid blank-screen failures.
 - Backend script resolution fallback order:
   1. `resource_dir/server/index.js`
   2. `exe_dir/resources/server/index.js`
