@@ -1,23 +1,114 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 #[cfg(not(debug_assertions))]
+use std::{
+    collections::HashSet,
+    env,
+    fs::OpenOptions,
+    io::Write,
+    path::PathBuf,
+    process::Command,
+    time::SystemTime,
+};
+
+#[cfg(not(debug_assertions))]
 use tauri::Manager;
+
+#[cfg(not(debug_assertions))]
+fn startup_log_line(message: &str) {
+    let log_path = env::temp_dir().join("torrentio-neo-startup.log");
+    let timestamp = format!("{:?}", SystemTime::now());
+
+    if let Ok(mut file) = OpenOptions::new().create(true).append(true).open(&log_path) {
+        let _ = writeln!(file, "[{timestamp}] {message}");
+    }
+}
+
+#[cfg(not(debug_assertions))]
+fn backend_script_candidates(app: &tauri::App) -> Vec<PathBuf> {
+    let mut candidates = Vec::new();
+
+    if let Ok(resource_dir) = app.path().resource_dir() {
+        candidates.push(resource_dir.join("server").join("index.js"));
+    }
+
+    if let Ok(exe_path) = env::current_exe() {
+        if let Some(exe_dir) = exe_path.parent() {
+            candidates.push(exe_dir.join("resources").join("server").join("index.js"));
+            candidates.push(exe_dir.join("server").join("index.js"));
+        }
+    }
+
+    if let Ok(cwd) = env::current_dir() {
+        candidates.push(cwd.join("server").join("index.js"));
+    }
+
+    let mut dedup = HashSet::new();
+    candidates
+        .into_iter()
+        .filter(|path| dedup.insert(path.clone()))
+        .collect()
+}
+
+#[cfg(not(debug_assertions))]
+fn node_command_candidates() -> Vec<PathBuf> {
+    let mut candidates = vec![PathBuf::from("node")];
+
+    if let Ok(program_files) = env::var("ProgramFiles") {
+        candidates.push(PathBuf::from(program_files).join("nodejs").join("node.exe"));
+    }
+
+    if let Ok(program_files_x86) = env::var("ProgramFiles(x86)") {
+        candidates.push(PathBuf::from(program_files_x86).join("nodejs").join("node.exe"));
+    }
+
+    candidates
+}
+
+#[cfg(not(debug_assertions))]
+fn start_backend_server(app: &tauri::App) {
+    let script_path = backend_script_candidates(app)
+        .into_iter()
+        .find(|path| path.is_file());
+
+    let Some(script_path) = script_path else {
+        startup_log_line("backend startup skipped: server/index.js not found");
+        return;
+    };
+
+    startup_log_line(&format!(
+        "backend script resolved to {}",
+        script_path.display()
+    ));
+
+    for node_candidate in node_command_candidates() {
+        match Command::new(&node_candidate).arg(&script_path).spawn() {
+            Ok(child) => {
+                startup_log_line(&format!(
+                    "backend started via '{}' with pid {}",
+                    node_candidate.display(),
+                    child.id()
+                ));
+                return;
+            }
+            Err(error) => {
+                startup_log_line(&format!(
+                    "backend start failed via '{}': {error}",
+                    node_candidate.display()
+                ));
+            }
+        }
+    }
+
+    startup_log_line("backend failed to start with all node candidates");
+}
 
 fn main() {
     tauri::Builder::default()
         .setup(|app| {
             #[cfg(not(debug_assertions))]
             {
-                use std::process::Command;
-
-                if let Ok(resource_dir) = app.path().resource_dir() {
-                    let server_script = resource_dir.join("server").join("index.js");
-                    if server_script.exists() {
-                        if let Err(error) = Command::new("node").arg(server_script).spawn() {
-                            eprintln!("failed to start backend server: {error}");
-                        }
-                    }
-                }
+                start_backend_server(app);
             }
 
             #[cfg(debug_assertions)]
@@ -30,3 +121,4 @@ fn main() {
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
+
