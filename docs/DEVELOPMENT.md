@@ -3,7 +3,6 @@
 ## Stack
 - Frontend: React 19 + TypeScript + Vite + Tailwind
 - Backend: Express 5 + WebTorrent
-- Desktop: Tauri 2 (Rust)
 
 ## Scripts
 - `npm run dev` start frontend and backend concurrently
@@ -12,8 +11,6 @@
 - `npm run test:smoke` run backend smoke test suite
 - `npm run build` build frontend assets
 - `npm run preview` preview frontend build
-- `npm run tauri:dev` run desktop dev shell
-- `npm run tauri:build` build desktop installers
 
 ## Local Workflow
 1. Install dependencies:
@@ -30,12 +27,7 @@ npm run dev
 - `http://localhost:5173`
 - `http://127.0.0.1:3001/api/health`
 
-4. Run desktop dev:
-```bash
-npm run tauri:dev
-```
-
-5. Run smoke validation:
+4. Run smoke validation:
 ```bash
 npm run test:smoke
 ```
@@ -58,7 +50,6 @@ npm run test:smoke
 - Preserve existing `/api` endpoint routes when adding new UI features.
 - Keep visual system in black/white + one accent unless a change is explicitly requested.
 - Keep changes split by scope when committing:
-  - `feat(tauri): ...`
   - `feat(backend): ...`
   - `feat(ui): ...`
   - `docs: ...`
@@ -74,9 +65,6 @@ npm run test:smoke
 ## Useful Commands
 ```bash
 git status -sb
-npx tauri info
-cargo check --manifest-path src-tauri/Cargo.toml
-cargo check --manifest-path src-tauri/Cargo.toml --release
 ```
 
 ## Common Local Issues
@@ -84,5 +72,3 @@ cargo check --manifest-path src-tauri/Cargo.toml --release
   - stop conflicting process or use different env values for backend.
 - Backend starts but UI disconnected:
   - verify Vite proxy targets and backend health endpoint.
-- Tauri dev hangs in terminal:
-  - expected behavior for long-running desktop dev process.

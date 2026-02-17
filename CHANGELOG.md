@@ -2,6 +2,22 @@
 
 All notable changes to this project are documented in this file.
 
+## 2026-02-17 (v0.2.0)
+
+### Changed
+- **BREAKING**: Removed Tauri desktop wrapper - now a pure web-based torrent client.
+- Removed all Tauri dependencies from package.json.
+- Removed `src-tauri/` directory and all Tauri configuration.
+- Simplified architecture to web-only (React + Vite frontend, Express + WebTorrent backend).
+- Updated all documentation to reflect web-only architecture.
+
+### Removed
+- Tauri desktop integration and packaging
+- Windows installer generation (msi/nsis)
+- Desktop-specific startup scripts and configurations
+
+## 2026-02-10 (v0.1.2)
+
 ## 2026-02-10 (v0.1.2)
 
 ### Changed

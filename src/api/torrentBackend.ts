@@ -19,7 +19,7 @@ function resolveApiBase() {
     return '/api';
   }
 
-  // In packaged Tauri builds there is no Vite proxy, so route directly to the Node backend.
+  // In production build without Vite proxy, route directly to the backend.
   return `${DEFAULT_BACKEND_ORIGIN}/api`;
 }
 
@@ -58,7 +58,7 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   if (!payload || typeof payload !== 'object') {
     throw new BackendRequestError(
       response.status,
-      'Invalid backend response. Ensure the desktop app can reach http://127.0.0.1:3001.',
+      'Invalid backend response. Ensure the backend is running on http://127.0.0.1:3001.',
     );
   }
 

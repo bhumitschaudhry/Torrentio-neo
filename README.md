@@ -1,11 +1,10 @@
 # Torrentio Neo
 
-Torrentio Neo is a desktop-ready torrent manager with:
+Torrentio Neo is a web-based torrent client with:
 - React + Vite frontend
 - Express + WebTorrent backend
-- Tauri desktop packaging for Windows
 
-It provides live torrent status, upload/magnet ingestion, pause/resume/remove controls, file listing, and stream endpoints.
+It provides live torrent status, upload/magnet ingestion, pause/resume/remove controls, file listing, and stream endpoints - all from your browser.
 
 ## Table of Contents
 1. [Core Features](#core-features)
@@ -17,12 +16,11 @@ It provides live torrent status, upload/magnet ingestion, pause/resume/remove co
 7. [Validation](#validation)
 8. [Configuration](#configuration)
 9. [API Overview](#api-overview)
-10. [Tauri Packaging](#tauri-packaging)
-11. [Troubleshooting](#troubleshooting)
-12. [Known Limitations](#known-limitations)
-13. [Recent Changes](#recent-changes)
-14. [Version Snapshot](#version-snapshot)
-15. [Additional Docs](#additional-docs)
+10. [Troubleshooting](#troubleshooting)
+11. [Known Limitations](#known-limitations)
+12. [Recent Changes](#recent-changes)
+13. [Version Snapshot](#version-snapshot)
+14. [Additional Docs](#additional-docs)
 
 ## Core Features
 - Add torrents via magnet URI / torrent URL.
@@ -30,12 +28,11 @@ It provides live torrent status, upload/magnet ingestion, pause/resume/remove co
 - Pause, resume, and remove torrents.
 - Live torrent and aggregate stats updates via Server-Sent Events (SSE).
 - File listing per torrent and byte-range streaming endpoint.
-- Desktop installers generated through Tauri (`msi` and `nsis`).
+- Fully functional from your browser window.
 
 ## Architecture
 - Frontend: `src/` (React + TypeScript + Tailwind).
 - Backend: `server/index.js` (Express + WebTorrent).
-- Desktop shell: `src-tauri/` (Rust + Tauri v2).
 
 ### Runtime data flow
 1. Frontend calls `/api/*`.
@@ -47,25 +44,15 @@ It provides live torrent status, upload/magnet ingestion, pause/resume/remove co
 ```text
 src/                  React frontend
 server/               Express + WebTorrent backend
-src-tauri/            Tauri Rust app and packaging config
 downloads/            Torrent payload output directory (default)
-releases/             Published Windows installers
 README.md             Project overview and operations guide
 docs/API.md           Endpoint reference
 docs/DEVELOPMENT.md   Developer workflow and conventions
-docs/TAURI.md         Desktop runtime and packaging details
 ```
 
 ## Prerequisites
-
-### Web development only
 - Node.js 24+
 - npm 11+
-
-### Tauri desktop development/build (Windows)
-- Rust stable toolchain (`x86_64-pc-windows-msvc`)
-- Visual Studio C++ Build Tools / MSVC toolchain
-- WebView2 Runtime
 
 ## Quick Start
 ```bash
@@ -104,24 +91,6 @@ npm run preview
 ```bash
 npm run test:smoke
 ```
-
-### Tauri desktop dev
-```bash
-npm run tauri:dev
-```
-
-### Tauri desktop installers
-```bash
-npm run tauri:build
-```
-
-Installer outputs:
-- `src-tauri/target/release/bundle/msi/Torrentio Neo_0.1.2_x64_en-US.msi`
-- `src-tauri/target/release/bundle/nsis/Torrentio Neo_0.1.2_x64-setup.exe`
-
-Direct download links:
-- [Windows Installer (MSI)](./releases/Torrentio%20Neo_0.1.2_x64_en-US.msi)
-- [Windows Setup (EXE)](./releases/Torrentio%20Neo_0.1.2_x64-setup.exe)
 
 ## Validation
 - `npm run test:smoke` validates backend API health and core torrent operations:
@@ -162,61 +131,34 @@ Main endpoints:
 
 Detailed request/response reference lives in `docs/API.md`.
 
-## Tauri Packaging
-Current strategy:
-- Bundle frontend static assets + backend `server/` resources.
-- On release startup, Rust bootstrap attempts to spawn backend with Node.
-- Node must be present on target machine.
-
-Startup diagnostics:
-- `%TEMP%\torrentio-neo-startup.log`
-
-Detailed desktop/runtime notes live in `docs/TAURI.md`.
-
 ## Troubleshooting
 - Backend unreachable:
   - Check `http://127.0.0.1:3001/api/health`.
-  - Inspect `%TEMP%\torrentio-neo-startup.log` for desktop runs.
   - Confirm Node is installed and discoverable (`node -v`).
 - Frontend unreachable:
   - Verify `http://localhost:5173`.
   - Ensure Vite process is running.
-- Tauri build failures:
-  - Run `npx tauri info`.
-  - Verify MSVC, Rust, and WebView2 setup.
 - Port conflicts:
   - Ensure ports `5173` and `3001` are not already in use.
 
 ## Known Limitations
-- Packaged app currently depends on system Node runtime for backend startup.
 - No authentication layer on backend API endpoints.
 - Streaming endpoint uses generic `application/octet-stream` content type.
-- Full installer-runtime QA on a clean machine profile should still be part of release validation.
 
 ## Recent Changes
-- Released `v0.1.2` with refreshed Windows installers and synchronized version metadata.
-- Tauri desktop integration completed and validated (`tauri:dev`, `tauri:build`).
-- Backend startup hardening for packaged runtime with diagnostics logging.
-- Windows CMD popup removed on desktop launch (backend now spawns hidden).
-- Fixed packaged desktop blank-screen issue by routing API calls directly to `http://127.0.0.1:3001` outside Vite dev mode.
+- Removed Tauri desktop wrapper - now a pure web-based torrent client.
 - UI theme toned down to black/white + single accent for reduced eye strain.
 
 See full history in `CHANGELOG.md`.
 
 ## Version Snapshot
-Validated locally on 2026-02-10:
+Validated locally on 2026-02-17:
 - App version: `0.1.2`
 - OS: Windows 10.0.26200 x64
 - node: 24.13.0
 - npm: 11.8.0
-- rustc: 1.91.1
-- cargo: 1.91.1
-- @tauri-apps/cli: 2.10.0
-- @tauri-apps/api: 2.10.1
-- tauri (Rust crate): 2.10.2
 
 ## Additional Docs
 - `CHANGELOG.md`
 - `docs/API.md`
 - `docs/DEVELOPMENT.md`
-- `docs/TAURI.md`
