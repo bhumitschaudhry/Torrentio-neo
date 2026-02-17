@@ -153,8 +153,14 @@
     }
 
     .feature-icon {
-      font-size: 48px;
+      width: 64px;
+      height: 64px;
       margin-bottom: 16px;
+    }
+
+    .feature-icon svg {
+      width: 100%;
+      height: 100%;
     }
 
     .feature-card h3 {
@@ -188,10 +194,40 @@
       overflow: hidden;
     }
 
-    .screenshot-card img {
+    .screenshot-content {
+      background: #fff;
+      padding: 60px 40px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid #000;
+    }
+
+    .screenshot-icon {
+      width: 96px;
+      height: 96px;
+      margin-bottom: 20px;
+    }
+
+    .screenshot-icon svg {
       width: 100%;
-      height: auto;
-      display: block;
+      height: 100%;
+    }
+
+    .screenshot-text {
+      text-align: center;
+    }
+
+    .screenshot-text h4 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .screenshot-text p {
+      color: #666;
+      font-size: 14px;
     }
 
     .screenshot-caption {
@@ -199,6 +235,8 @@
       font-weight: 600;
       font-size: 14px;
       text-transform: uppercase;
+      background: #fff;
+      border-top: 4px solid #000;
     }
 
     /* Download Section */
@@ -219,6 +257,17 @@
       background: #fff;
       border: 4px solid #000;
       padding: 32px;
+    }
+
+    .platform-icon {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 16px;
+    }
+
+    .platform-icon svg {
+      width: 100%;
+      height: 100%;
     }
 
     .download-card h3 {
@@ -301,6 +350,24 @@
       letter-spacing: 1px;
       margin-left: 8px;
     }
+
+    .info-box {
+      margin-top: 60px;
+      padding: 32px;
+      background: #f5f5f5;
+      border: 4px solid #000;
+    }
+
+    .info-box h3 {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 24px;
+      margin-bottom: 16px;
+    }
+
+    .info-box p {
+      color: #666;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -334,32 +401,68 @@
       <h2 class="section-title">WHY TORRENTIO NEO?</h2>
       <div class="features-grid">
         <div class="feature-card">
-          <div class="feature-icon">🎨</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
           <h3>Beautiful Design</h3>
           <p>Neo-brutalist interface with bold typography and striking visuals. No boring gray interfaces.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">⚡</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
           <h3>Lightning Fast</h3>
           <p>Built with modern technologies for maximum performance. Downloads start instantly.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🔒</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
           <h3>Privacy First</h3>
           <p>No tracking, no telemetry. Your torrenting activity stays private. Open source and transparent.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🌍</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
           <h3>Cross-Platform</h3>
           <p>Works on Windows, macOS, and Linux. Same great experience everywhere.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🎬</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"/>
+              <line x1="7" y1="2" x2="7" y2="22"/>
+              <line x1="17" y1="2" x2="17" y2="22"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <line x1="2" y1="7" x2="7" y2="7"/>
+              <line x1="2" y1="17" x2="7" y2="17"/>
+              <line x1="17" y1="17" x2="22" y2="17"/>
+              <line x1="17" y1="7" x2="22" y2="7"/>
+            </svg>
+          </div>
           <h3>Stream While Downloading</h3>
           <p>Watch videos and listen to music while they download. No waiting required.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">⚙️</div>
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+            </svg>
+          </div>
           <h3>Full Control</h3>
           <p>Pause, resume, prioritize, and manage your torrents with precision. Complete control at your fingertips.</p>
         </div>
@@ -373,31 +476,53 @@
       <h2 class="section-title">INTERFACE PREVIEW</h2>
       <div class="screenshot-grid">
         <div class="screenshot-card">
-          <div style="background: #fff; padding: 40px; min-height: 300px; display: flex; align-items: center; justify-content: center; border: 4px solid #000;">
+          <div class="screenshot-content">
             <div style="text-align: center;">
-              <div style="font-size: 64px; margin-bottom: 20px;">📥</div>
-              <div style="font-family: 'Archivo Black', sans-serif; font-size: 24px;">Dashboard View</div>
-              <div style="color: #666; margin-top: 8px;">Monitor all your torrents</div>
+              <div class="screenshot-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+              </div>
+              <div class="screenshot-text">
+                <h4>Dashboard View</h4>
+                <p>Monitor all your torrents</p>
+              </div>
             </div>
           </div>
           <div class="screenshot-caption">Dashboard with active torrents</div>
         </div>
         <div class="screenshot-card">
-          <div style="background: #fff; padding: 40px; min-height: 300px; display: flex; align-items: center; justify-content: center; border: 4px solid #000;">
+          <div class="screenshot-content">
             <div style="text-align: center;">
-              <div style="font-size: 64px; margin-bottom: 20px;">📊</div>
-              <div style="font-family: 'Archivo Black', sans-serif; font-size: 24px;">Statistics</div>
-              <div style="color: #666; margin-top: 8px;">Real-time speed & progress</div>
+              <div class="screenshot-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10"/>
+                  <line x1="12" y1="20" x2="12" y2="4"/>
+                  <line x1="6" y1="20" x2="6" y2="14"/>
+                </svg>
+              </div>
+              <div class="screenshot-text">
+                <h4>Statistics</h4>
+                <p>Real-time speed & progress</p>
+              </div>
             </div>
           </div>
           <div class="screenshot-caption">Real-time download statistics</div>
         </div>
         <div class="screenshot-card">
-          <div style="background: #fff; padding: 40px; min-height: 300px; display: flex; align-items: center; justify-content: center; border: 4px solid #000;">
+          <div class="screenshot-content">
             <div style="text-align: center;">
-              <div style="font-size: 64px; margin-bottom: 20px;">🎬</div>
-              <div style="font-family: 'Archivo Black', sans-serif; font-size: 24px;">Streaming</div>
-              <div style="color: #666; margin-top: 8px;">Watch while downloading</div>
+              <div class="screenshot-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"/>
+                </svg>
+              </div>
+              <div class="screenshot-text">
+                <h4>Streaming</h4>
+                <p>Watch while downloading</p>
+              </div>
             </div>
           </div>
           <div class="screenshot-caption">Built-in media streaming</div>
@@ -414,30 +539,58 @@
       
       <div class="download-cards">
         <div class="download-card">
-          <h3>🪟 Windows</h3>
+          <div class="platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9V2h12v7"/>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/>
+              <path d="M6 14h12v8H6z"/>
+            </svg>
+          </div>
+          <h3>Windows</h3>
           <p>Native Windows application with installer</p>
           <span class="download-button coming-soon">Coming Soon <span class="badge">v1.0</span></span>
         </div>
         <div class="download-card">
-          <h3>🍎 macOS</h3>
+          <div class="platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"/>
+              <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+          </div>
+          <h3>macOS</h3>
           <p>Universal binary for Intel and Apple Silicon</p>
           <span class="download-button coming-soon">Coming Soon <span class="badge">v1.0</span></span>
         </div>
         <div class="download-card">
-          <h3>🐧 Linux</h3>
+          <div class="platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a10 10 0 1 0 10 10 4 4 0 0 1-5-5 4 4 0 0 1-5-5"/>
+              <path d="M8.5 8.5v.01"/>
+              <path d="M16 16v.01"/>
+              <path d="M12 12v.01"/>
+            </svg>
+          </div>
+          <h3>Linux</h3>
           <p>AppImage, deb, and rpm packages available</p>
           <span class="download-button coming-soon">Coming Soon <span class="badge">v1.0</span></span>
         </div>
         <div class="download-card">
-          <h3>🌐 Web Version</h3>
+          <div class="platform-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <h3>Web Version</h3>
           <p>Try the browser-based version (experimental)</p>
           <a href="https://bhumitschaudhry.github.io/Torrentio-neo/" class="cta-button" style="font-size: 12px; padding: 12px 24px;">Try Beta</a>
         </div>
       </div>
 
-      <div style="margin-top: 60px; padding: 32px; background: #f5f5f5; border: 4px solid #000;">
-        <h3 style="font-family: 'Archivo Black', sans-serif; font-size: 24px; margin-bottom: 16px;">🚀 Want to Help Build It?</h3>
-        <p style="color: #666; margin-bottom: 20px;">Torrentio Neo is open source! Contribute, report issues, or star us on GitHub.</p>
+      <div class="info-box">
+        <h3>Want to Help Build It?</h3>
+        <p>Torrentio Neo is open source! Contribute, report issues, or star us on GitHub.</p>
         <a href="https://github.com/bhumitschaudhry/Torrentio-neo" target="_blank" class="cta-button" style="font-size: 14px; padding: 12px 32px;">View on GitHub</a>
       </div>
     </div>
@@ -449,7 +602,7 @@
       <p>&copy; 2026 Torrentio Neo. Open source and free forever.</p>
       <p style="margin-top: 12px;">
         <a href="https://github.com/bhumitschaudhry/Torrentio-neo" target="_blank">GitHub</a> • 
-        Built with ❤️ using React + Tauri
+        Built with modern web technologies
       </p>
     </div>
   </footer>
