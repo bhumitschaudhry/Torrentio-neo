@@ -1,4 +1,11 @@
 node_modules/
+src/
+dist/
+server/
+downloads/
+releases/
+*.log
+index.react.backup.html
 server/
 downloads/
 

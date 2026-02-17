@@ -1,31 +1,12 @@
 {
-  "name": "react-vite-tailwind",
+  "name": "torrentio-neo",
   "private": true,
-  "version": "0.3.0",
-  "type": "module",
+  "version": "1.0.0",
+  "description": "Torrentio Neo - Modern Torrent Client",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
-  },
-  "dependencies": {
-    "clsx": "2.1.1",
-    "lucide-react": "^0.563.0",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "tailwind-merge": "3.4.0",
-    "webtorrent": "^2.1.34"
+    "deploy": "gh-pages -d ."
   },
   "devDependencies": {
-    "@tailwindcss/vite": "4.1.17",
-    "@types/node": "^22.0.0",
-    "@types/react": "19.2.7",
-    "@types/react-dom": "19.2.3",
-    "@vitejs/plugin-react": "5.1.1",
-    "gh-pages": "^6.3.0",
-    "tailwindcss": "4.1.17",
-    "typescript": "5.9.3",
-    "vite": "7.2.4"
+    "gh-pages": "^6.3.0"
   }
 }
