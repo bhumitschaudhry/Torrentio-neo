@@ -8,10 +8,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/webtorrent@2.1.34/webtorrent.min.js"></script>
-    <script type="module" crossorigin src="/Torrentio-neo/assets/index-C4tK4grF.js"></script>
+    <script type="module" crossorigin src="/Torrentio-neo/assets/index-FWGUCh8H.js"></script>
     <link rel="stylesheet" crossorigin href="/Torrentio-neo/assets/index-DOgisMDD.css">
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Ensure WebTorrent is available before loading React app
+      window.addEventListener('load', function() {
+        if (typeof window.WebTorrent === 'undefined') {
+          console.error('WebTorrent failed to load from CDN');
+          document.getElementById('root').innerHTML = '<div style="padding: 20px; font-family: sans-serif;"><h1>Loading Error</h1><p>WebTorrent failed to load. Please refresh the page or try a different browser.</p></div>';
+        }
+      });
+    </script>
   </body>
 </html>

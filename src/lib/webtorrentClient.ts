@@ -5,7 +5,26 @@ declare global {
   var WebTorrent: any;
 }
 
-const client = new global.WebTorrent();
+function getClient(): any {
+  if (typeof window === 'undefined') {
+    throw new Error('WebTorrent only works in the browser');
+  }
+
+  if (typeof window.WebTorrent === 'undefined') {
+    throw new Error('WebTorrent is not loaded. Please ensure the WebTorrent CDN script is loaded.');
+  }
+
+  return new window.WebTorrent();
+}
+
+let clientInstance: any | null = null;
+
+function getClientInstance(): any {
+  if (!clientInstance) {
+    clientInstance = getClient();
+  }
+  return clientInstance;
+}
 
 export interface BrowserTorrentClient {
   client: WebTorrentInstance;
@@ -177,10 +196,13 @@ function addMetadata(torrent: WebTorrentInstance, source: string): void {
 }
 
 export const browserTorrentClient: BrowserTorrentClient = {
-  client,
+  get client() {
+    return getClientInstance();
+  },
 
   addTorrent(source: string): Promise<WebTorrentInstance> {
     return new Promise((resolve, reject) => {
+      const client = getClientInstance();
       const existing = client.get(source);
       if (existing) {
         resolve(existing);
@@ -203,6 +225,7 @@ export const browserTorrentClient: BrowserTorrentClient = {
       const reader = new FileReader();
       reader.onload = () => {
         const buffer = reader.result as ArrayBuffer;
+        const client = getClientInstance();
         client.add(buffer, { path: '' }, (torrent, err) => {
           if (err) {
             reject(err);
@@ -218,6 +241,7 @@ export const browserTorrentClient: BrowserTorrentClient = {
   },
 
   pauseTorrent(infoHash: string): void {
+    const client = getClientInstance();
     const torrent = client.get(infoHash);
     if (torrent) {
       torrent.pause();
@@ -225,6 +249,7 @@ export const browserTorrentClient: BrowserTorrentClient = {
   },
 
   resumeTorrent(infoHash: string): void {
+    const client = getClientInstance();
     const torrent = client.get(infoHash);
     if (torrent) {
       torrent.resume();
@@ -232,6 +257,7 @@ export const browserTorrentClient: BrowserTorrentClient = {
   },
 
   removeTorrent(infoHash: string): void {
+    const client = getClientInstance();
     const torrent = client.get(infoHash);
     if (torrent) {
       client.remove(torrent);
@@ -239,10 +265,12 @@ export const browserTorrentClient: BrowserTorrentClient = {
   },
 
   getTorrents(): TorrentItem[] {
+    const client = getClientInstance();
     return client.torrents.map(mapTorrent);
   },
 
   getStats(): GlobalStats {
+    const client = getClientInstance();
     const torrents = client.torrents;
     const totalDownloadedBytes = torrents.reduce(
       (sum, torrent) => sum + (Number.isFinite(torrent.downloaded) ? torrent.downloaded : 0),
@@ -267,6 +295,7 @@ export const browserTorrentClient: BrowserTorrentClient = {
   },
 
   getFileUrl(torrentId: string, fileIndex: number): string {
+    const client = getClientInstance();
     const torrent = client.get(torrentId);
     if (!torrent || !torrent.files[fileIndex]) {
       return '';
@@ -276,10 +305,12 @@ export const browserTorrentClient: BrowserTorrentClient = {
   },
 
   on(event: string, callback: (...args: unknown[]) => void): void {
+    const client = getClientInstance();
     client.on(event as never, callback);
   },
 
   destroy(): void {
+    const client = getClientInstance();
     client.destroy();
   },
 };

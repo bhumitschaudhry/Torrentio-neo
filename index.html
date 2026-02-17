@@ -11,6 +11,15 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Ensure WebTorrent is available before loading React app
+      window.addEventListener('load', function() {
+        if (typeof window.WebTorrent === 'undefined') {
+          console.error('WebTorrent failed to load from CDN');
+          document.getElementById('root').innerHTML = '<div style="padding: 20px; font-family: sans-serif;"><h1>Loading Error</h1><p>WebTorrent failed to load. Please refresh the page or try a different browser.</p></div>';
+        }
+      });
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

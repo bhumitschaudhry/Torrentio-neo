@@ -18,8 +18,15 @@ export function useBrowserTorrent() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Check if WebTorrent is supported
-    if (typeof window === 'undefined' || !WebTorrent.WEBRTC_SUPPORT) {
+    // Check if WebTorrent is loaded
+    if (typeof window === 'undefined' || typeof window.WebTorrent === 'undefined') {
+      setError('WebTorrent is not loaded. Please refresh the page or try a different browser.');
+      setIsLoading(false);
+      return;
+    }
+
+    // Check if WebRTC is supported
+    if (!WebTorrent.WEBRTC_SUPPORT) {
       setError('Your browser does not support WebRTC. Please use a modern browser like Chrome, Firefox, or Edge.');
       setIsLoading(false);
       return;
@@ -31,18 +38,26 @@ export function useBrowserTorrent() {
 
     // Update torrents and stats periodically
     const updateState = () => {
-      setTorrents(browserTorrentClient.getTorrents());
-      setStats(browserTorrentClient.getStats());
+      try {
+        setTorrents(browserTorrentClient.getTorrents());
+        setStats(browserTorrentClient.getStats());
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Failed to get torrents');
+      }
     };
 
     // Initial update
     updateState();
 
     // Listen for torrent events
-    browserTorrentClient.on('torrent', updateState);
-    browserTorrentClient.on('error', (err: Error) => {
-      setError(err.message);
-    });
+    try {
+      browserTorrentClient.on('torrent', updateState);
+      browserTorrentClient.on('error', (err: Error) => {
+        setError(err.message);
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to initialize WebTorrent');
+    }
 
     // Update every second
     const interval = setInterval(updateState, 1000);
