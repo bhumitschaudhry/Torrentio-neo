@@ -1,42 +1,33 @@
 # Torrentio Neo
 
-Torrentio Neo is a web-based torrent client with:
-- React + Vite frontend
-- Express + WebTorrent backend
-
-It provides live torrent status, upload/magnet ingestion, pause/resume/remove controls, file listing, and stream endpoints - all from your browser.
+Torrentio Neo is a **fully browser-based torrent client** that runs entirely in your browser using WebTorrent and WebRTC. No backend setup required - just open the website and start torrenting!
 
 ## Table of Contents
 1. [Core Features](#core-features)
 2. [Live Demo](#live-demo)
-3. [Architecture](#architecture)
+3. [How It Works](#how-it-works)
 4. [Repository Structure](#repository-structure)
-5. [Prerequisites](#prerequisites)
-6. [Quick Start](#quick-start)
-7. [Run Modes](#run-modes)
-8. [Validation](#validation)
-9. [Configuration](#configuration)
-10. [API Overview](#api-overview)
-11. [Troubleshooting](#troubleshooting)
-12. [Known Limitations](#known-limitations)
-13. [Recent Changes](#recent-changes)
-14. [Version Snapshot](#version-snapshot)
-15. [Additional Docs](#additional-docs)
+5. [Quick Start](#quick-start)
+6. [Development](#development)
+7. [Troubleshooting](#troubleshooting)
+8. [Known Limitations](#known-limitations)
+9. [Recent Changes](#recent-changes)
 
 ## Core Features
-- Add torrents via magnet URI / torrent URL.
-- Upload local `.torrent` files.
-- Pause, resume, and remove torrents.
-- Live torrent and aggregate stats updates via Server-Sent Events (SSE).
-- File listing per torrent and byte-range streaming endpoint.
-- Fully functional from your browser window.
+- ✅ **Zero Setup** - Runs entirely in your browser, no installation required
+- ✅ **Instant Torrenting** - Add torrents via magnet URI or torrent URL
+- ✅ **File Upload** - Upload local `.torrent` files
+- ✅ **Full Control** - Pause, resume, and remove torrents
+- ✅ **Real-time Updates** - Live progress tracking and statistics
+- ✅ **Stream Media** - Stream video/audio directly in your browser
+- ✅ **Privacy First** - All torrent activity happens locally in your browser
 
 ## Live Demo
-🌐 **Try it live:** [https://bhumitschaudhry.github.io/torrentio-neo/](https://bhumitschaudhry.github.io/torrentio-neo/)
+🌐 **Try it now:** [https://bhumitschaudhry.github.io/torrentio-neo/](https://bhumitschaudhry.github.io/torrentio-neo/)
 
-> **Note:** The live demo requires a local backend server running. See [Quick Start](#quick-start) for running the full application.
+Just visit the URL and start adding torrents - nothing to install!
 
-## Architecture
+## How It Works
 - Frontend: `src/` (React + TypeScript + Tailwind).
 - Backend: `server/index.js` (Express + WebTorrent).
 
@@ -138,18 +129,30 @@ Main endpoints:
 Detailed request/response reference lives in `docs/API.md`.
 
 ## Troubleshooting
-- Backend unreachable:
-  - Check `http://127.0.0.1:3001/api/health`.
-  - Confirm Node is installed and discoverable (`node -v`).
-- Frontend unreachable:
-  - Verify `http://localhost:5173`.
-  - Ensure Vite process is running.
-- Port conflicts:
-  - Ensure ports `5173` and `3001` are not already in use.
+
+### Browser Compatibility
+- **Best performance:** Chrome, Firefox, Edge (latest versions)
+- **WebRTC support required:** Safari works but may have limited WebRTC support
+- Check WebRTC support: [https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/](https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/)
+
+### Torrent Not Downloading
+- **Slow or stuck downloads:** WebTorrent relies on WebRTC peers. Some torrents may have few WebRTC-compatible peers
+- ** magnet links not working:** Ensure the magnet link is complete and valid
+- **No peers:** Traditional BitTorrent clients (μTorrent, qBittorrent) don't support WebRTC, so WebTorrent clients can't connect to them directly
+
+### Streaming Issues
+- **Video won't play:** Wait for more of the file to download (check progress bar)
+- **Buffering:** Pause and let more download before resuming playback
+
+### Browser Errors
+- **"WebRTC not supported":** Your browser doesn't support WebRTC. Try Chrome or Firefox
+- **"Cannot add torrent":** The magnet link may be invalid or the torrent file may be corrupted
 
 ## Known Limitations
-- No authentication layer on backend API endpoints.
-- Streaming endpoint uses generic `application/octet-stream` content type.
+- **WebRTC-only peers:** Can only connect to other WebTorrent clients, not traditional BitTorrent clients
+- **Speed depends on WebRTC peers:** May be slower than traditional clients for torrents with few WebRTC peers
+- **Browser memory limits:** Very large torrents may consume significant browser memory
+- **No seeding after page close:** Torrents stop when you close the browser tab
 
 ## Recent Changes
 - Removed Tauri desktop wrapper - now a pure web-based torrent client.

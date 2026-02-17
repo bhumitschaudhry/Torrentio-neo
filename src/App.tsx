@@ -4,8 +4,7 @@ import { Header } from './components/Header';
 import { StatsBar } from './components/StatsBar';
 import { TorrentList } from './components/TorrentList';
 import { BottomBar } from './components/BottomBar';
-import { useTorrentBackend } from './hooks/useTorrentBackend';
-import { torrentBackendApi } from './api/torrentBackend';
+import { useBrowserTorrent } from './hooks/useBrowserTorrent';
 
 export function App() {
   const [activeTab, setActiveTab] = useState('all');
@@ -21,7 +20,9 @@ export function App() {
     pauseTorrent,
     resumeTorrent,
     removeTorrent,
-  } = useTorrentBackend();
+    getFileStreamUrl,
+    getTorrentFiles,
+  } = useBrowserTorrent();
 
   const counts = useMemo(
     () => ({
@@ -106,14 +107,15 @@ export function App() {
 
   const handleStream = async (id: string) => {
     try {
-      const response = await torrentBackendApi.getTorrentFiles(id);
+      const response = getTorrentFiles(id);
       const firstStreamable = response.files.find((file) => file.streamable);
       if (!firstStreamable) {
         window.alert('No streamable files are available yet for this torrent.');
         return;
       }
 
-      window.open(torrentBackendApi.getFileStreamUrl(id, firstStreamable.index), '_blank', 'noopener,noreferrer');
+      const streamUrl = getFileStreamUrl(id, firstStreamable.index);
+      window.open(streamUrl, '_blank', 'noopener,noreferrer');
     } catch (streamError) {
       window.alert(streamError instanceof Error ? streamError.message : 'Failed to open stream.');
     }
