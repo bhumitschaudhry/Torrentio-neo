@@ -8,19 +8,20 @@ It provides live torrent status, upload/magnet ingestion, pause/resume/remove co
 
 ## Table of Contents
 1. [Core Features](#core-features)
-2. [Architecture](#architecture)
-3. [Repository Structure](#repository-structure)
-4. [Prerequisites](#prerequisites)
-5. [Quick Start](#quick-start)
-6. [Run Modes](#run-modes)
-7. [Validation](#validation)
-8. [Configuration](#configuration)
-9. [API Overview](#api-overview)
-10. [Troubleshooting](#troubleshooting)
-11. [Known Limitations](#known-limitations)
-12. [Recent Changes](#recent-changes)
-13. [Version Snapshot](#version-snapshot)
-14. [Additional Docs](#additional-docs)
+2. [Live Demo](#live-demo)
+3. [Architecture](#architecture)
+4. [Repository Structure](#repository-structure)
+5. [Prerequisites](#prerequisites)
+6. [Quick Start](#quick-start)
+7. [Run Modes](#run-modes)
+8. [Validation](#validation)
+9. [Configuration](#configuration)
+10. [API Overview](#api-overview)
+11. [Troubleshooting](#troubleshooting)
+12. [Known Limitations](#known-limitations)
+13. [Recent Changes](#recent-changes)
+14. [Version Snapshot](#version-snapshot)
+15. [Additional Docs](#additional-docs)
 
 ## Core Features
 - Add torrents via magnet URI / torrent URL.
@@ -29,6 +30,11 @@ It provides live torrent status, upload/magnet ingestion, pause/resume/remove co
 - Live torrent and aggregate stats updates via Server-Sent Events (SSE).
 - File listing per torrent and byte-range streaming endpoint.
 - Fully functional from your browser window.
+
+## Live Demo
+🌐 **Try it live:** [https://bhumitschaudhry.github.io/torrentio-neo/](https://bhumitschaudhry.github.io/torrentio-neo/)
+
+> **Note:** The live demo requires a local backend server running. See [Quick Start](#quick-start) for running the full application.
 
 ## Architecture
 - Frontend: `src/` (React + TypeScript + Tailwind).
