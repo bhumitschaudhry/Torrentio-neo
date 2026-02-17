@@ -1,0 +1,3 @@
+CODEX_THREAD_ID=019c4239-ed86-7211-a98b-cfeb9ed8fa38
+CapturedAt=2026-02-09
+Note=This environment exposes CODEX_THREAD_ID (thread identifier), not a separate explicit session-id variable.

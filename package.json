@@ -1,0 +1,12 @@
+{
+  "name": "torrentio-neo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Torrentio Neo - Modern Torrent Client",
+  "scripts": {
+    "deploy": "gh-pages -d ."
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}

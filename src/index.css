@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brutal-bg: #FFFFFF;
+  --color-brutal-black: #000000;
+  --color-brutal-white: #FFFFFF;
+  --color-accent: #3B82F6;
+  --color-accent-dark: #2563EB;
+  --color-acid-green: var(--color-accent);
+  --color-hot-magenta: var(--color-accent);
+  --color-electric-blue: var(--color-accent);
+  --color-acid-green-dark: var(--color-accent-dark);
+  --color-hot-magenta-dark: var(--color-accent-dark);
+  --color-electric-blue-dark: var(--color-accent-dark);
+  --color-brutal-gray: #FFFFFF;
+  --color-brutal-dark-gray: #000000;
+  --color-brutal-yellow: var(--color-accent);
+  --color-brutal-red: var(--color-accent);
+  --font-display: 'Archivo Black', sans-serif;
+  --font-body: 'Space Grotesk', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: #FFFFFF;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFFFF;
+  border-left: 4px solid #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #000;
+  border: 2px solid #FFFFFF;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3B82F6;
+}
+
+/* Animations */
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes slide-fill {
+  from { width: 0%; }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+.animate-pulse-green {
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+.animate-slide-fill {
+  animation: slide-fill 1.5s ease-out;
+}
+
+.brutal-shadow {
+  box-shadow: 6px 6px 0px #000000;
+}
+
+.brutal-shadow-sm {
+  box-shadow: 4px 4px 0px #000000;
+}
+
+.brutal-shadow-magenta {
+  box-shadow: 6px 6px 0px #3B82F6;
+}
+
+.brutal-shadow-green {
+  box-shadow: 6px 6px 0px #3B82F6;
+}
+
+.brutal-shadow-blue {
+  box-shadow: 6px 6px 0px #3B82F6;
+}
