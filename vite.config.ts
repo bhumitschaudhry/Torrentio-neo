@@ -22,6 +22,10 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['webtorrent'],
-    exclude: ['events', 'crypto', 'path'],
+  },
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
   },
 });

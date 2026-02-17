@@ -1,20 +1,13 @@
+import WebTorrent from 'webtorrent';
 import type { Torrent as WebTorrentInstance, TorrentFile } from 'webtorrent';
 import type { TorrentItem, GlobalStats } from '../types/torrent';
-
-declare global {
-  var WebTorrent: any;
-}
 
 function getClient(): any {
   if (typeof window === 'undefined') {
     throw new Error('WebTorrent only works in the browser');
   }
 
-  if (typeof window.WebTorrent === 'undefined') {
-    throw new Error('WebTorrent is not loaded. Please ensure the WebTorrent CDN script is loaded.');
-  }
-
-  return new window.WebTorrent();
+  return new WebTorrent();
 }
 
 let clientInstance: any | null = null;
