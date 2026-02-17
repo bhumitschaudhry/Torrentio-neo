@@ -1,17 +1,99 @@
 # Torrentio Neo
 
-Torrentio Neo is a **fully browser-based torrent client** that runs entirely in your browser using WebTorrent and WebRTC. No backend setup required - just open the website and start torrenting!
+**Torrentio Neo** is a modern, cross-platform torrent client with a beautiful neo-brutalist design. Currently in development - coming soon for Windows, macOS, and Linux.
 
-## Table of Contents
-1. [Core Features](#core-features)
-2. [Live Demo](#live-demo)
-3. [How It Works](#how-it-works)
-4. [Repository Structure](#repository-structure)
-5. [Quick Start](#quick-start)
-6. [Development](#development)
-7. [Troubleshooting](#troubleshooting)
-8. [Known Limitations](#known-limitations)
-9. [Recent Changes](#recent-changes)
+![Torrentio Neo](https://img.shields.io/badge/version-1.0.0--developing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
+## 🚀 Current Status
+
+**🔨 Under Active Development**
+
+We're building Torrentio Neo from the ground up with:
+- ✅ Beautiful neo-brutalist UI design
+- ✅ Cross-platform desktop architecture planned
+- ✅ Open source and community-driven
+- 🚧 Desktop app in development (see [DESKTOP_APP_PLAN.md](DESKTOP_APP_PLAN.md))
+
+## ✨ Key Features
+
+- **Beautiful Design** - Neo-brutalist interface with bold typography
+- **Lightning Fast** - Built with modern technologies
+- **Cross-Platform** - Windows, macOS, and Linux support
+- **Privacy First** - No tracking, no telemetry
+- **Stream While Downloading** - Watch videos as they download
+- **Full Control** - Complete torrent management
+
+## 📸 Screenshots
+
+Coming soon! Check out our live showcase for UI previews.
+
+## 🌐 Live Showcase
+
+Visit our product showcase: **[https://bhumitschaudhry.github.io/Torrentio-neo/](https://bhumitschaudhry.github.io/Torrentio-neo/)**
+
+See the beautiful interface and learn more about upcoming features.
+
+## 🛠️ Development
+
+### Tech Stack
+- **Frontend:** React + TypeScript + Tailwind CSS
+- **Backend:** Express + WebTorrent
+- **Desktop:** Tauri (Rust-based)
+
+### Project Status
+- ✅ UI/UX design complete
+- ✅ Frontend components built
+- ✅ Backend API implemented
+- 🚧 Desktop app packaging in progress
+- 📋 Release planned for v1.0.0
+
+### Roadmap
+1. **Phase 1:** Complete desktop app packaging
+2. **Phase 2:** Beta testing
+3. **Phase 3:** Public release (Windows, macOS, Linux)
+4. **Phase 4:** Auto-updates and additional features
+
+## 🤝 Contributing
+
+We welcome contributions! See [DESKTOP_APP_PLAN.md](DESKTOP_APP_PLAN.md) for the development roadmap.
+
+**Quick Start:**
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## 📋 To-Do
+
+- [ ] Complete Tauri desktop app packaging
+- [ ] Add auto-update mechanism
+- [ ] Code signing for installers
+- [ ] Beta testing program
+- [ ] Public v1.0.0 release
+- [ ] Microsoft Store submission
+- [ ] Mac App Store submission
+
+## 📄 License
+
+MIT License - see LICENSE file for details
+
+## 🔗 Links
+
+- **Website:** [https://bhumitschaudhry.github.io/Torrentio-neo/](https://bhumitschaudhry.github.io/Torrentio-neo/)
+- **GitHub:** [https://github.com/bhumitschaudhry/Torrentio-neo](https://github.com/bhumitschaudhry/Torrentio-neo)
+- **Desktop Plan:** [DESKTOP_APP_PLAN.md](DESKTOP_APP_PLAN.md)
+
+## 💬 Community
+
+- **Star** the repo if you're interested!
+- **Watch** for updates
+- **Issues** - Report bugs or request features
+- **Discussions** - Join the conversation
+
+---
+
+**Torrentio Neo** - Built with ❤️ using React + Tauri
 
 ## Core Features
 - ✅ **Zero Setup** - Runs entirely in your browser, no installation required
