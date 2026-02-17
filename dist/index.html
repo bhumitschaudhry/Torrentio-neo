@@ -7,20 +7,53 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/webtorrent@2.1.34/webtorrent.min.js"></script>
-    <script type="module" crossorigin src="/Torrentio-neo/assets/index-FWGUCh8H.js"></script>
-    <link rel="stylesheet" crossorigin href="/Torrentio-neo/assets/index-DOgisMDD.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="loading" style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: 'Space Grotesk', sans-serif; flex-direction: column; gap: 20px;">
+        <div style="font-size: 24px; font-weight: 600;">Loading Torrentio Neo...</div>
+        <div style="font-size: 14px; color: #666;">Please wait while we load WebTorrent</div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/webtorrent@2.1.34/webtorrent.min.js" onerror="window.webTorrentLoadError=true"></script>
     <script>
-      // Ensure WebTorrent is available before loading React app
-      window.addEventListener('load', function() {
-        if (typeof window.WebTorrent === 'undefined') {
-          console.error('WebTorrent failed to load from CDN');
-          document.getElementById('root').innerHTML = '<div style="padding: 20px; font-family: sans-serif;"><h1>Loading Error</h1><p>WebTorrent failed to load. Please refresh the page or try a different browser.</p></div>';
+      function initApp() {
+        if (typeof window.WebTorrent !== 'undefined' && window.WebTorrent) {
+          // Remove loading screen
+          const loadingEl = document.getElementById('loading');
+          if (loadingEl) loadingEl.remove();
+          // Load React app
+          const script = document.createElement('script');
+          script.type = 'module';
+          script.src = '/src/main.tsx';
+          document.body.appendChild(script);
+        } else {
+          document.getElementById('loading').innerHTML = `
+            <div style="text-align: center; padding: 40px; font-family: 'Space Grotesk', sans-serif;">
+              <h1 style="color: #e53e3e; margin-bottom: 20px;">⚠️ Loading Error</h1>
+              <p style="font-size: 18px; margin-bottom: 20px;">WebTorrent failed to load from CDN.</p>
+              <div style="background: #f7fafc; padding: 20px; border-radius: 8px; text-align: left; max-width: 500px; margin: 0 auto;">
+                <p style="margin: 0 0 10px 0;"><strong>Possible solutions:</strong></p>
+                <ol style="margin: 0; padding-left: 20px;">
+                  <li>Refresh the page (Ctrl+R / Cmd+R)</li>
+                  <li>Check your internet connection</li>
+                  <li>Try a different browser (Chrome, Firefox, Edge)</li>
+                  <li>Disable any ad blockers or privacy extensions</li>
+                </ol>
+              </div>
+            </div>
+          `;
         }
-      });
+      }
+
+      // Wait for WebTorrent to load
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          setTimeout(initApp, 500); // Give CDN a moment to load
+        });
+      } else {
+        setTimeout(initApp, 500);
+      }
     </script>
   </body>
 </html>
